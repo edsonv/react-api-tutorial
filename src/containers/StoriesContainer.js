@@ -1,9 +1,9 @@
-import React, { useEffect, useState, memo } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getStoryIds } from '../services/api';
 import { Story } from '../components/Story';
 import {
   GlobalStyle,
-  StoriesContainerWrapper
+  StoriesContainerWrapper,
 } from '../styles/StoriesContainerStyles';
 import { useInfiniteScroll } from '../hooks/useInfiniteScroll';
 
@@ -12,7 +12,7 @@ export const StoriesContainer = () => {
   const [storyIds, setStoryIds] = useState([]);
 
   useEffect(() => {
-    getStoryIds().then(data => setStoryIds(data));
+    getStoryIds().then((data) => setStoryIds(data));
   }, []);
 
   // [] = when the component mounts, do this...
@@ -23,7 +23,7 @@ export const StoriesContainer = () => {
       <GlobalStyle></GlobalStyle>
       <StoriesContainerWrapper>
         <h1>Hacker News Stories</h1>
-        {storyIds.slice(0, count).map(storyId => (
+        {storyIds.slice(0, count).map((storyId) => (
           <Story key={storyId} storyId={storyId} />
         ))}
       </StoriesContainerWrapper>
